@@ -1,21 +1,24 @@
 # Lightweight-Block-Cipher-PRESENT
 
-`80-bit PRESENT.c`主要有以下两个函数：
+`80-bit PRESENT.c` consists of the following two functions：
 
 ```c
-void present_encrypt(const uint8_t *plain, const uint8_t *key, uint8_t *ans)
+void present_encrypt(const uint8_t *plain, const uint8_t *key, uint8_t *ans);
+
+void present_decrypt(const uint8_t *cipher, const uint8_t *key, uint8_t *ans);
 ```
 
-用于present的加密，接收64bit的明文指针`plain`、80bit的密钥指针`key`以及64bit的结果指针`ans`，加密结果保存在`ans`指针中
+Parameter Description:
 
-```c
-void present_decrypt(const uint8_t *cipher, const uint8_t *key, uint8_t *ans)
-```
+* `plain`: 64-bit pointer
+* `cipher`: 64-bit pointer
+* `key`: 80-bit pointer
+* `ans`: 64-bit pointer
 
-用于present的解密，接收64bit的明文指针`cipher`、80bit的密钥指针`key`以及64bit的结果指针`ans`，加密结果保存在`ans`指针中
+Both functions have no return value, results of encryption and decryption will be stored in the `ans` pointer.
 
-`main()`函数则用于简单测试加密解密的正确性
+This cipher will work for 31 rounds, and the `main()` function is used for testing the correctness of both functions.
 
-**注意加密解密前需要手动对需要处理的文本分段或补齐长度**
+**ATTENTION: You should split your data into 64-bit segments before use both functions.**
 
-加密函数使用了动态计算轮密钥的方法，解密函数则提前计算好了轮密钥，所以加密解密的性能可能会有一定差别
+The encryption function updates round keys dynamically, while the decryption function calculates all round keys in advance, so their performances might be a little different.
