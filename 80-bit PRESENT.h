@@ -600,20 +600,3 @@ void present_decrypt(const uint8_t *cipher, const uint8_t *key, uint8_t *ans) {
 	ans[6] = state[6];
 	ans[7] = state[7];
 }
-
-#include <stdio.h>
-
-int main() {
-	uint8_t plain[8]  = {0, 0, 0, 0, 0, 0, 0, 0};
-	uint8_t key[10]   = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	uint8_t cipher[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-	present_encrypt(plain, key, cipher);
-	int i = 0;
-	for(i = 0; i < 8; ++i)
-		printf("%x ", cipher[i]);
-	puts("");
-	present_decrypt(cipher, key, plain);
-	for(i = 0; i<8 ; ++i)
-		printf("%x ",plain[i]);
-	return 0;
-}
