@@ -8,7 +8,7 @@ void present_encrypt(const uint8_t *plain, const uint8_t *key, uint8_t *ans);
 void present_decrypt(const uint8_t *cipher, const uint8_t *key, uint8_t *ans);
 ```
 
-Parameter Description:
+Parameters Description:
 
 * `plain`: 64-bit pointer
 * `cipher`: 64-bit pointer
